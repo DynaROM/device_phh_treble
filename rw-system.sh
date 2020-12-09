@@ -64,9 +64,9 @@ setprop persist.adb.nonblocking_ffs false
 
 # Enable Aux Camera for gcam
 if getprop ro.boot.hardware|grep -iq  -e qcom;then
-   setprop vendor.camera.aux.packagelist "org.codeaurora.snapcam,com.android.camera,com.android.GoogleCamera"
+   setprop vendor.camera.aux.packagelist "org.codeaurora.snapcam,net.sourceforge.opencamera,com.android.GoogleCamera"
 else
-   setprop vendor.camera.aux.packagelist "com.mediatek.camera,com.android.camera,com.android.GoogleCamera"
+   setprop vendor.camera.aux.packagelist "com.mediatek.camera,net.sourceforge.opencamera,com.android.GoogleCamera"
 fi
 
 # Enable IMS for qcom devices
