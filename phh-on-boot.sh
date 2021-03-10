@@ -60,3 +60,18 @@ getprop | \
     while read -r svc ;do
         setprop ctl.stop "$svc"
     done
+
+# Unused for now
+copyprop() {
+    p="$(getprop "$2")"
+    if [ "$p" ]; then
+        resetprop_phh "$1" "$(getprop "$2")"
+    fi
+}
+
+# DynaROM: TODO: find a better way to do this
+sleep 30
+(getprop ro.vendor.build.security_patch; getprop ro.keymaster.xxx.security_patch) \
+ | sort | tail -n 1 | while read v; do
+	[ -n "$v" ] && resetprop_phh ro.build.version.security_patch "$v"
+done
