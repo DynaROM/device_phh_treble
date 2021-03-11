@@ -14,18 +14,21 @@ fi
 
 echo 'PRODUCT_MAKEFILES := \' > AndroidProducts.mk
 
-for part in a ab;do
-	for apps in vanilla gapps foss gapps-go;do
-		for arch in arm64 arm a64;do
-			for su in yes no;do
+#for part in a ab;do
+for part in ab; do
+	#for apps in vanilla gapps foss gapps-go;do
+	for apps in vanilla gapps; do
+		for arch in arm64 arm a64; do
+			#for su in yes no;do
+			for su in no; do
 				apps_suffix=""
 				apps_script=""
 				apps_name=""
 				extra_packages=""
-                vndk="vndk.mk"
-		optional_base=""
+				vndk="vndk.mk"
+				optional_base=""
 				if [ "$apps" == "gapps" ];then
-					apps_suffix="g"
+					apps_suffix="gapps"
 					apps_script='$(call inherit-product, device/phh/treble/gapps.mk)'
 					apps_name="with GApps"
 				fi
@@ -40,7 +43,7 @@ for part in a ab;do
 					apps_name="with FOSS apps"
 				fi
 				if [ "$apps" == "vanilla" ];then
-					apps_suffix="v"
+					apps_suffix="vanilla"
 					apps_script=''
 					apps_name="vanilla"
 				fi
@@ -51,20 +54,20 @@ for part in a ab;do
 					vndk="vndk32.mk"
 				fi
 
-				su_suffix='N'
+				su_suffix=''
 				if [ "$su" == "yes" ];then
-					su_suffix='S'
+					su_suffix='_WITH-SU'
 					extra_packages+=' phh-su me.phh.superuser'
 				fi
 
-				part_suffix='a'
+				part_suffix='a-only'
 				if [ "$part" == 'ab' ];then
-					part_suffix='b'
+					part_suffix=''
 				else
 					optional_base='$(call inherit-product, device/phh/treble/base-sas.mk)'
 				fi
 
-				target="treble_${arch}_${part_suffix}${apps_suffix}${su_suffix}"
+				target="DynaROM_treble_${arch}_${part_suffix}${apps_suffix}${su_suffix}"
 
 				baseArch="$arch"
 				if [ "$arch" = "a64" ];then
@@ -88,7 +91,7 @@ $rom_script
 PRODUCT_NAME := $target
 PRODUCT_DEVICE := phhgsi_${arch}_$part
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := Phh-Treble $apps_name
+PRODUCT_MODEL := DynaROM on Phh-Trebless
 
 PRODUCT_PACKAGES += $extra_packages
 
