@@ -647,7 +647,7 @@ fi
 
 setprop ctl.stop console
 dmesg -n 1
-if [ -f /system/phh/secure ];then
+if [ ! -f /system/phh/insecure ];then
     copyprop() {
         p="$(getprop "$2")"
         if [ "$p" ]; then
