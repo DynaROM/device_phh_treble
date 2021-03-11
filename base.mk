@@ -212,3 +212,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Never include a debug ART build
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+# Setup wizard optional
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+	ro.setupwizard.wifi_required=false \
