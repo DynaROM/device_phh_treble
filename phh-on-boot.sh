@@ -61,11 +61,14 @@ getprop | \
         setprop ctl.stop "$svc"
     done
 
+# DynaROM: TODO: depends on unsparse system!
 # Install IMS apk
-if [ ! -f /mnt/phh/ims ];then
+if [ ! -f /system/phh/ims_true ];then
 	if getprop ro.boot.hardware|grep -iq  -e qcom;then
-		pm install /system/phh/ims.apk
-		touch /mnt/phh/ims
+		pm install -r /system/phh/ims.apk
+		mount -o remount,rw /
+		touch /system/phh/ims_true
+		mount -o remount,ro /
 	fi
 fi
 
@@ -77,8 +80,6 @@ copyprop() {
     fi
 }
 
-# DynaROM: TODO: find a better way to do this
-sleep 30
 (getprop ro.vendor.build.security_patch; getprop ro.keymaster.xxx.security_patch) \
  | sort | tail -n 1 | while read v; do
 	[ -n "$v" ] && resetprop_phh ro.build.version.security_patch "$v"
