@@ -212,3 +212,5 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Never include a debug ART build
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+# We only support Android Q/10+ devices
+PRODUCT_EXTRA_VNDK_VERSIONS := 29
