@@ -45,6 +45,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/phh/treble/ims,system/phh/ims)
 
+# Phh SuperUser Files
+PRODUCT_COPY_FILES += \
+        $(call find-copy-subdir-files,*,device/phh/treble/root,system/phh/root)
+
 #USB Audio
 PRODUCT_COPY_FILES += \
 	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml
