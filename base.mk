@@ -203,3 +203,12 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 	debug.fdsan=0 \
+
+
+
+#################################
+############ DynaROM ############
+#################################
+
+# Never include a debug ART build
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
