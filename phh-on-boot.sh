@@ -61,6 +61,14 @@ getprop | \
         setprop ctl.stop "$svc"
     done
 
+# Install IMS apk
+if [ ! -f /mnt/phh/ims ];then
+	if getprop ro.boot.hardware|grep -iq  -e qcom;then
+		pm install /system/phh/ims.apk
+		touch /mnt/phh/ims
+	fi
+fi
+
 # Unused for now
 copyprop() {
     p="$(getprop "$2")"
