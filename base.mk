@@ -215,3 +215,6 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 # Setup wizard optional
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 	ro.setupwizard.wifi_required=false \
+# Grid recents by default (TODO: Make Recents better in general)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+	ro.recents.grid=true \
