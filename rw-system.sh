@@ -647,7 +647,7 @@ fi
 
 setprop ctl.stop console
 dmesg -n 1
-if [ ! -f /system/phh/insecure ];then
+if ! getprop ro.build.type | grep -iq eng; then
     copyprop() {
         p="$(getprop "$2")"
         if [ "$p" ]; then
@@ -692,13 +692,15 @@ if [ ! -f /system/phh/insecure ];then
     resetprop_phh ro.secure 1
     resetprop_phh ro.build.type user
     resetprop_phh ro.build.selinux 0
+    resetprop_phh service.adb.root 0
+    #setprop persist.sys.usb.config mtp,adb
 
     resetprop_phh ro.adb.secure 1
     setprop ctl.restart adbd
 fi
 
-resetprop_phh ro.adb.secure 0
-setprop ctl.restart adbd
+#resetprop_phh ro.adb.secure 0
+#setprop ctl.restart adbd
 
 
 for abi in "" 64;do
@@ -832,7 +834,7 @@ if getprop ro.vendor.build.fingerprint |grep -qiE \
         -e razer/cheryl ; then
     setprop media.settings.xml "/vendor/etc/media_profiles_vendor.xml"
 fi
-resetprop_phh service.adb.root 0
+#resetprop_phh service.adb.root 0
 
 setprop persist.sys.usb.config mtp,adb
 
