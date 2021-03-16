@@ -689,14 +689,14 @@ if ! getprop ro.build.type | grep -iq eng; then
     resetprop_phh ro.boot.warranty_bit 0
     resetprop_phh ro.warranty_bit 0
     #resetprop_phh ro.debuggable 0
-    resetprop_phh ro.secure 1
-    resetprop_phh ro.build.type user
+    #resetprop_phh ro.secure 1
+    #resetprop_phh ro.build.type user
     resetprop_phh ro.build.selinux 0
-    resetprop_phh service.adb.root 0
+    #resetprop_phh service.adb.root 0
     #setprop persist.sys.usb.config mtp,adb
 
-    resetprop_phh ro.adb.secure 1
-    setprop ctl.restart adbd
+    #resetprop_phh ro.adb.secure 1
+    #setprop ctl.restart adbd
 fi
 
 #resetprop_phh ro.adb.secure 0
